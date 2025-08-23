@@ -1,0 +1,127 @@
+/* --- Auto Scroll Carousel (CSS-Only) --- */
+.auto-scroll {
+    position: relative; /* Establishes a positioning context for the posters */
+    width: 100%;
+    height: 400px;
+    overflow: hidden; /* Hides posters if they ever go outside the container */
+    border-radius: 4px;
+    margin-bottom: 2rem; /* Adds space between the carousel and the grid */
+    padding-top: 20px;
+}
+
+/* This is the animation definition */
+@keyframes fade-carousel {
+    0% { opacity: 0; }
+    /* The poster becomes visible at 5% and stays visible until 33% */
+    5% { opacity: 1; }
+    33% { opacity: 1; }
+    /* It starts to fade out at 38% */
+    38% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* This targets ONLY the posters inside your .auto-scroll container */
+.auto-scroll .card-scroll {
+    position: absolute; /* Lays all posters on top of each other */
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Hides all posters by default to prevent a flash on load */
+
+
+    /* --- Image Fitting Properties --- */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Apply the animation */
+    animation-name: fade-carousel;
+    animation-duration: 24s; /* This is the TOTAL duration for all slides */
+    animation-iteration-count: infinite;
+}
+
+/* Stagger the start time for each poster */
+.auto-scroll .card-scroll:nth-child(1) {
+    animation-delay: 0s;
+}
+.auto-scroll .card-scroll:nth-child(2) {
+    animation-delay: 4s; /* Starts after the first one finishes its visible time */
+}
+.auto-scroll .card-scroll:nth-child(3) {
+    animation-delay: 8s;
+}
+.auto-scroll .card-scroll:nth-child(4) {
+    animation-delay: 12s;
+}
+.auto-scroll .card-scroll:nth-child(5) {
+    animation-delay: 16s;
+}
+.auto-scroll .card-scroll:nth-child(6) {
+    animation-delay: 20s;
+}
+
+.movies-grid {
+    display: grid;
+    /* This creates a responsive grid. It will fit as many 220px columns as possible. */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem; /* The space between the movie cards */
+    padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* --- Individual Movie Card --- */
+.movie-card {
+    position: relative; /* Needed to position child elements like the rating */
+    border-radius: 12px;
+    overflow: hidden; /* Clips the content to the rounded corners */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 2 / 3; /* Maintains the movie poster shape (width / height) */
+}
+
+.movie-card:hover {
+    transform: scale(1.05); /* Enlarge the card on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Add a shadow for a "lifted" effect */
+}
+
+/* --- Poster Styling --- */
+.card-poster {
+    width: 100%;
+    height: 100%;
+    background-color: #2a2a3a; /* Fallback color if no image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- Rating Badge (Top Right) --- */
+.rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #DEB522; /*color for the rating badge */
+    color: black;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9em;
+    z-index: 2; /* Ensures it's on top of other content */
+}
+
+/* --- Card Content (Title at the bottom) --- */
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    /* Creates a gradient overlay so the title is always readable */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    z-index: 1;
+}
+
+.title {
+    color: white;
+    margin: 0;
+    font-size: 1.2em;
+}
+
