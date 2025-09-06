@@ -1,8 +1,9 @@
 /* --- Auto Scroll Carousel (CSS-Only) --- */
 .auto-scroll {
+    display: flex;
     position: relative; /* Establishes a positioning context for the posters */
     width: 100%;
-    height: 400px;
+    height: 500px;
     overflow: hidden; /* Hides posters if they ever go outside the container */
     border-radius: 4px;
     margin-bottom: 2rem; /* Adds space between the carousel and the grid */
@@ -10,32 +11,43 @@
 }
 
 /* This is the animation definition */
-@keyframes fade-carousel {
-    0% { opacity: 0; }
-    /* The poster becomes visible at 5% and stays visible until 33% */
-    5% { opacity: 1; }
-    33% { opacity: 1; }
-    /* It starts to fade out at 38% */
-    38% { opacity: 0; }
-    100% { opacity: 0; }
+@keyframes slide-animation {
+  /* Starts off-screen to the right and invisible */
+  0% { 
+    transform: translateX(100%);
+    opacity: 0; 
+  }
+
+  /* Slides into the center and becomes visible */
+  5%, 33% { 
+    transform: translateX(0);
+    opacity: 1; 
+  }
+
+  /* Slides out to the left and fades out */
+  38%, 100% { 
+    transform: translateX(-100%);
+    opacity: 0; 
+  }
 }
 
 /* This targets ONLY the posters inside your .auto-scroll container */
+/* This targets ONLY the posters inside your .auto-scroll container */
 .auto-scroll .card-scroll {
+    display: flex;
     position: absolute; /* Lays all posters on top of each other */
     width: 100%;
     height: 100%;
-    opacity: 0; /* Hides all posters by default to prevent a flash on load */
-
+    opacity: 0; /* Hides all posters by default */
 
     /* --- Image Fitting Properties --- */
-    background-size: cover;
+    background-size: cover; /* Changed from 'contain' for better filling */
     background-position: center;
     background-repeat: no-repeat;
 
-    /* Apply the animation */
-    animation-name: fade-carousel;
-    animation-duration: 24s; /* This is the TOTAL duration for all slides */
+    /* Apply the CORRECT animation */
+    animation-name: slide-animation; /* <-- THIS IS THE CHANGE */
+    animation-duration: 24s;
     animation-iteration-count: infinite;
 }
 
