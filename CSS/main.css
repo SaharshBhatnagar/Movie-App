@@ -1,37 +1,59 @@
 /* --- Auto Scroll Carousel (CSS-Only) --- */
 .auto-scroll {
     display: flex;
-    position: relative; /* Establishes a positioning context for the posters */
+    position: relative; 
     width: 100%;
     height: 500px;
-    overflow: hidden; /* Hides posters if they ever go outside the container */
+    overflow: hidden; 
     border-radius: 4px;
-    margin-bottom: 2rem; /* Adds space between the carousel and the grid */
+    margin-bottom: 2rem; 
     padding-top: 20px;
 }
 
-/* This is the animation definition */
-@keyframes slide-animation {
-  /* Starts off-screen to the right and invisible */
-  0% { 
-    transform: translateX(100%);
-    opacity: 0; 
-  }
-
-  /* Slides into the center and becomes visible */
-  5%, 33% { 
-    transform: translateX(0);
-    opacity: 1; 
-  }
-
-  /* Slides out to the left and fades out */
-  38%, 100% { 
-    transform: translateX(-100%);
-    opacity: 0; 
-  }
+/* Define styles for the .container if needed, otherwise it's just a placeholder */
+.auto-scroll .container {
+    /* If this container is meant to overlay or hold controls, define its position here. 
+       If it's just a wrapper, no specific styles are needed as .card-scroll uses absolute positioning. */
 }
 
-/* This targets ONLY the posters inside your .auto-scroll container */
+/* This is the animation definition */
+/* Optimized for 6 slides (16.667% total time per slide) */
+@keyframes slide-animation {
+    /* Starts off-screen to the right and invisible */
+    0% { 
+        transform: translateX(100%);
+        opacity: 0; 
+    }
+
+    /* 1% - Just after start: Start fading in and sliding into view */
+    1% {
+        opacity: 0;
+    }
+
+    /* 2% - Slide-in and Fade-in Complete: Fully visible and centered */
+    2% { 
+        transform: translateX(0);
+        opacity: 1; 
+    }
+
+    /* 14.667% - Hold: Fully visible and centered */
+    14.667% { 
+        transform: translateX(0);
+        opacity: 1; 
+    }
+
+    /* 15.667% - Start Fade-out: Still centered, but opacity starts to drop */
+    15.667% { 
+        opacity: 0; 
+    }
+    
+    /* 16.667% - Slide-out and Fade-out Complete: Off-screen left, fully transparent */
+    16.667%, 100% { 
+        transform: translateX(-100%);
+        opacity: 0; 
+    }
+}
+
 /* This targets ONLY the posters inside your .auto-scroll container */
 .auto-scroll .card-scroll {
     display: flex;
@@ -41,34 +63,35 @@
     opacity: 0; /* Hides all posters by default */
 
     /* --- Image Fitting Properties --- */
-    background-size: cover; /* Changed from 'contain' for better filling */
+    background-size: 100% 100%; 
     background-position: center;
     background-repeat: no-repeat;
 
-    /* Apply the CORRECT animation */
-    animation-name: slide-animation; /* <-- THIS IS THE CHANGE */
-    animation-duration: 24s;
+    /* Apply the animation */
+    animation-name: slide-animation;
+    animation-duration: 24s; /* 6 slides * 4 seconds each */
     animation-iteration-count: infinite;
 }
 
-/* Stagger the start time for each poster */
-.auto-scroll .card-scroll:nth-child(1) {
-    animation-delay: 0s;
-}
+/* Stagger the start time for each poster. 
+   **NOTE:** Since the .container is the 1st child, the slides start at :nth-child(2) */
 .auto-scroll .card-scroll:nth-child(2) {
-    animation-delay: 4s; /* Starts after the first one finishes its visible time */
+    animation-delay: 0s; /* First Slide */
 }
 .auto-scroll .card-scroll:nth-child(3) {
-    animation-delay: 8s;
+    animation-delay: 4s; /* Second Slide */
 }
 .auto-scroll .card-scroll:nth-child(4) {
-    animation-delay: 12s;
+    animation-delay: 8s; /* Third Slide */
 }
 .auto-scroll .card-scroll:nth-child(5) {
-    animation-delay: 16s;
+    animation-delay: 12s; /* Fourth Slide */
 }
 .auto-scroll .card-scroll:nth-child(6) {
-    animation-delay: 20s;
+    animation-delay: 16s; /* Fifth Slide */
+}
+.auto-scroll .card-scroll:nth-child(7) {
+    animation-delay: 20s; /* Sixth (Last) Slide */
 }
 
 .movies-grid {
