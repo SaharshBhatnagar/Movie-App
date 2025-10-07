@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie-App</title>
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/slider.css">
 </head>
 <body>
 
@@ -26,16 +27,13 @@
     <main>
 
         <div class="auto-scroll">
-            <div class="card-scroll" style="background-image: url(Movie-Images/Slider/Brave-Slider.jpg);"></div>
-            <div class="card-scroll" style="background-image: url(Movie-Images/Slider/Mulan-Slider.jpg);"></div>
-            <div class="card-scroll" style="background-image: url(Movie-Images/Slider/Frozen-Slider.jpg);"></div>
-            <div class="card-scroll" style="background-image: url(Movie-Images/Slider/Mufasa-Lion-King-slider.jpg);"></div>
-            <div class="card-scroll" style="background-image: url(Movie-Images/Slider/Flow-Slider.jpg);"></div>
-            <div class="card-scroll" style="background-image: url(Movie-Images/Slider/How-To-Train-your-dragon.jpg);"></div>
+            <div class ="container"></div>
+                <!-- here js load movies to show as slide --> 
+            </div>
         </div>
 
         <div class="movies-grid">
-
+            <!-- here js load movies to show in grid/section -->
         </div>
 
     </main>
@@ -46,8 +44,10 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="data/moviePanel.js"></script>
-    <script src="scripts/movieGridShow.js"></script>
+    <script src="data/slidesData.js"></script>
+    <script src="data/moviesData.js"></script> <!-- loads the movies data -->
+    <script src="scripts/movieSlideShow.js"></script>
+    <script src="scripts/movieGridShow.js"></script> <!-- generate html with loaded data -->
     
 </body>
 </html>
