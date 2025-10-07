@@ -10,7 +10,7 @@ const movieData = [
         title: "Mulan"
     },
     {
-        image: "Movie-Images/Posters/Pete's-Dragon.jpg",
+        image: "Movie-Images/Posters/Petes-Dragon.jpg",
         rating: 6.7,
         title: "Pete's Dragon"
     },
@@ -90,7 +90,7 @@ const movieData = [
         title: "How To Train Your Dragon"
     },
     {
-        image: "Movie-Images/Posters/A-Turtle's-Tale.jpg",
+        image: "Movie-Images/Posters/A-Turtles-Tale.jpg",
         rating: 6,
         title: "A Turtle's Tale"
     },
