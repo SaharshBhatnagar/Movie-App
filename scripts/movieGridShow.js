@@ -13,5 +13,3 @@ movieData.forEach((grid) => {
 })
 
 document.querySelector('.movies-grid').innerHTML = movieGrid;
-
-console.log(movieGrid);

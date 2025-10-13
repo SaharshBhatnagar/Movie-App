@@ -7,5 +7,3 @@ movieSlides.forEach((slide) => {
 })
 
 document.querySelector('.container').innerHTML = movieSlide;
-
-console.log(movieSlide);
